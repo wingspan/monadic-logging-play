@@ -7,10 +7,9 @@ import play.api._
 import play.api.db.DB
 import play.api.mvc._
 import play.api.libs.json._
-
+import scala.util.{Try, Failure, Success}
 import scalaz._
 import scalaz.std.list.listMonoid
-import scala.util.{Try, Failure, Success}
 
 
 object Root extends Controller {
@@ -121,6 +120,14 @@ object Root extends Controller {
         } yield r
 
       resultsWithLog
+    }
+
+    def create(dbconn: java.sql.Connection, id: String, obj: Skill): Try[Unit] = Try {
+      val count = SQL("INSERT INTO skills VALUES ({id}, {name})")
+        .on('id -> id,
+        'name -> obj.name)
+        .executeUpdate()(dbconn)
+      // assert count==1
     }
   }
 
