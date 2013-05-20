@@ -14,3 +14,12 @@ duration of a request. We use a monad similar to `Writer[List[String], Either[Th
 Does not require Play installed; SBT will download play along with other dependencies.
 
 From the project root: `sbt play run`
+
+## License
+
+Distributed under the MIT License.
+
+Contributors:
+
+* Dustin Getz
+* Martin Snyder
