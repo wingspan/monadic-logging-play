@@ -7,7 +7,9 @@ a proof-of-concept Scala Play webapp using monadic logging around I/O that can f
 
 Using a traditional mutable logger singleton means that logs from concurrent requests are interleaved. If we were to
 pass logs up the call stack, rather than mutating a global, we have access to the complete and isolated logs across the
-duration of a request. We use a monad similar to `Writer[List[String], Either[Throwable, A]]` to achieve this.
+duration of a request, even in the presence of errors.
+
+We use a monad similar to `Writer[List[String], Either[Throwable, A]]` to achieve this.
 
 ## how to run
 
